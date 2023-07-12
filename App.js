@@ -1,41 +1,21 @@
+// App.js
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Image } from 'react-native';
-import React, {useState} from 'react';
-import Lenny from "./assets/Lenny.png"
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
+import MainScreen from './MainScreen';
+import Home from './Home';
+
+
+const Stack = createStackNavigator();
 
 export default function App() {
-
-  const [titleText, setTitleText] = useState("Bird's Nest");
-  const bodyText = 'This is not really a bird nest.';
-
-  const onPressTitle = () => {
-    setTitleText("Bird's Nest [pressed]");
-  };
-  
   return (
-    <View style={styles.container}> 
-
-    <View style={{backgroundColor:"blue",flex:0.5}}> 
-    <Image source={Lenny}/>
-
-    <Text onPress={onPressTitle}> New</Text>
-    <Text>{titleText}</Text>
-
-    </View>
-
-
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>Hello React Native</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
