@@ -1,54 +1,53 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TextInput, SafeAreaView, ScrollView, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, SafeAreaView, ScrollView, Button, Alert } from 'react-native';
 import avatar from "./assets/avatar.jpeg";
-import firebase from './firebaseConfig'; 
+import firebase from './firebaseConfig';  // ตรวจสอบการ import ให้ถูกต้อง
 
 export default function MainScreen({ navigation }) {
-  const [email, setEmail] = useState(''); 
-  const [password, setPassword] = useState(''); 
-  const [errorMessage, setErrorMessage] = useState(''); 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
+      // หลังจากล็อกอินสำเร็จ นำผู้ใช้ไปยังหน้า 'Home'
       navigation.navigate('Home');
     } catch (error) {
-      setErrorMessage(error.message);
+      Alert.alert("Error", "There was an issue signing in.");
+      console.error("Error during login: ", error);
     }
   };
 
   return (
     <View style={styles.container}>
       <ScrollView>
-        <View style={{flex:0.5,justifyContent: 'center', alignItems: 'center',}}>
-          <Image style={{width: 100,height:100}} source={avatar}/>
-          <Text>New</Text>
+        <View style={{flex:0.5, justifyContent: 'center', alignItems: 'center',}}>
+          <Image style={{width: 100, height: 100}} source={avatar}/>
+          <Text> New</Text>
         </View>
         
         <SafeAreaView>
           <TextInput 
-            style={styles.input}  
+            style={styles.input} 
             placeholder="Email" 
             value={email}
             onChangeText={setEmail}
           />
           <TextInput 
             style={styles.input}  
-            placeholder="Password" 
+            placeholder="Password"
             value={password}
             onChangeText={setPassword}
-            secureTextEntry={true} 
+            secureTextEntry={true}
           />
         </SafeAreaView>
 
         <Button
           color="pink"
           title="Login"
-          onPress={handleLogin} 
+          onPress={handleLogin}
         />
-
-        {errorMessage ? <Text style={{color: 'red'}}>{errorMessage}</Text> : null}
 
         <Text>Open up App.js to start working on your app!</Text>
         <Text>Hello React Native</Text>

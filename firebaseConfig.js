@@ -1,17 +1,15 @@
-import firebase from '@react-native-firebase/app';
-import '@react-native-firebase/auth';
+import * as firebase from 'firebase';
+import 'firebase/auth';
 
-// Firebase config object, คุณควรได้รับมาจาก Firebase Console ของคุณ
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCypcN_3IetULS6V8-BQ9FzjLazZAIDuSQ",
+  authDomain: "mywebsite-7ab79.firebaseapp.com",
+  projectId: "mywebsite-7ab79",
+  storageBucket: "mywebsite-7ab79.appspot.com",
+  messagingSenderId: "17995190475",
+  appId: "1:17995190475:web:ec92d56e81c0792f69cb4e"
 };
 
-// Initialize Firebase
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
