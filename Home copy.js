@@ -1,23 +1,14 @@
-import React, { useEffect } from 'react';
+// Profile.js
+import React from 'react';
 import { Text, View, Image, StyleSheet } from 'react-native';
 import avatars from "./assets/avatar.jpeg";
-import firebase from './firebaseConfig';
 
-const Home = ({ navigation }) => { 
+const Home = () => {
+    // สมมติว่าข้อมูลนี้มาจากฐานข้อมูลหรือ API สำหรับผู้ใช้ที่ล็อกอิน
     const user = {
-        username: 'username', 
-        description: 'This is a user description',
+        username: 'username', // ชื่อผู้ใช้
+        description: 'This is a user description', // คำอธิบายผู้ใช้
     }
-
-    useEffect(() => {
-        const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-            if (!user) {
-                navigation.navigate('Login');
-            }
-        });
-
-        return unsubscribe;
-    }, [navigation]);
 
     return (
         <View style={styles.container}>
@@ -40,7 +31,7 @@ const styles = StyleSheet.create({
     profileImage: {
         width: 100,
         height: 100,
-        borderRadius: 50, 
+        borderRadius: 50, // ทำให้ภาพเป็นวงกลม
         marginBottom: 10,
     },
     username: {
@@ -55,4 +46,3 @@ const styles = StyleSheet.create({
 });
 
 export default Home;
-

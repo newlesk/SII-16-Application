@@ -1,54 +1,32 @@
+// MainScreen.js
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TextInput, SafeAreaView, ScrollView, Button } from 'react-native';
 import avatar from "./assets/avatar.jpeg";
-import firebase from './firebaseConfig'; 
 
 export default function MainScreen({ navigation }) {
-  const [email, setEmail] = useState(''); 
-  const [password, setPassword] = useState(''); 
-  const [errorMessage, setErrorMessage] = useState(''); 
-
-  const handleLogin = async () => {
-    try {
-      await firebase.auth().signInWithEmailAndPassword(email, password);
-      navigation.navigate('Home');
-    } catch (error) {
-      setErrorMessage(error.message);
-    }
-  };
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={{flex:0.5,justifyContent: 'center', alignItems: 'center',}}>
           <Image style={{width: 100,height:100}} source={avatar}/>
-          <Text>New</Text>
+
+          <Text > New</Text>
+
+
         </View>
         
         <SafeAreaView>
-          <TextInput 
-            style={styles.input}  
-            placeholder="Email" 
-            value={email}
-            onChangeText={setEmail}
-          />
-          <TextInput 
-            style={styles.input}  
-            placeholder="Password" 
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={true} 
-          />
+          <TextInput style={styles.input}  placeholder="Email"></TextInput>
+          <TextInput style={styles.input}  placeholder="Password"></TextInput>
         </SafeAreaView>
 
         <Button
-          color="pink"
-          title="Login"
-          onPress={handleLogin} 
+        color="pink"
+          title="Go to Home"
+          onPress={() => navigation.navigate('Home')}
         />
-
-        {errorMessage ? <Text style={{color: 'red'}}>{errorMessage}</Text> : null}
 
         <Text>Open up App.js to start working on your app!</Text>
         <Text>Hello React Native</Text>
