@@ -6,6 +6,7 @@ import React from 'react';
 import MainScreen from './MainScreen';
 import Home from './Home';
 import SignUpScreen from './SignUpScreen'
+import RegisterScreen from './RegisterScreen'
 
 
 
@@ -19,6 +20,7 @@ export default function App() {
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name='SignUpScreen' component={SignUpScreen}></Stack.Screen>
+        <Stack.Screen name='RegisterScreen' component={RegisterScreen}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
